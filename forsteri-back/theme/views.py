@@ -6,8 +6,6 @@ from rest_framework import status
 from .models import Theme
 from .forms import ThemeForm
 from rest_framework import generics
-from rest_framework_simplejwt.tokens import AccessToken
-from home.models import UserProfile
 
 from .models import Theme
 from .serializers import ThemeSerializer
@@ -21,7 +19,6 @@ class CreateTheme(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user  # requestから直接userを取得する
         serializer.save(user=user)
-
 
 class ThemeFormView(APIView):
     def get(self, request):
