@@ -1,43 +1,22 @@
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.generics import CreateAPIView
-from .serializers import UserSerializer
-from django.contrib.auth.views import LoginView,LogoutView
-from  .forms import LoginForm
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import AllowAny
-from .serializers import LoginSerializer
 from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth import logout
+
+from .utils.auth import JWTAuthentication
+from .utils.auth import NormalAuthentication
 
 
+class Login(APIView):
 
-class UserCreateView(CreateAPIView):
-    serializer_class = UserSerializer
+    authentication_classes = [NormalAuthentication,]
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED, headers=headers)
+    def post(self, request, *args, **kwargs):
+        return Response({"token": request.user})
 
-class LoginAPIView(APIView):
-    permission_classes = [AllowAny]
+class Something(APIView):
+    authentication_classes = [JWTAuthentication, ]
+    # ログインしてるユーザーだけアクセスできるようにします。
+    permission_classes = [IsAuthenticated, ]
 
-    def post(self, request, format=None):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid():
-            # ログイン処理を実装する
-            # 必要な認証バックエンドを使用してユーザーを認証し、トークンを発行するなどの処理を行います
-            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    form_class = LoginForm
-
-class LogoutAPIView(APIView):
-    def post(self, request):
-        logout(request)
-        return Response({'message': 'Logout successful', 'isLoggedIn': False}, status=status.HTTP_200_OK)
+    def get(self, request, *args, **kwargs):
+        return Response({"data": "中身です"})
