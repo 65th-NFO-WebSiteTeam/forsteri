@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -6,16 +5,22 @@ from rest_framework import status
 
 from .models import Theme
 from .forms import ThemeForm
+from rest_framework import generics
+from rest_framework_simplejwt.tokens import AccessToken
+from home.models import UserProfile
+
+from .models import Theme
 from .serializers import ThemeSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
+class CreateTheme(generics.CreateAPIView):
+    queryset = Theme.objects.all()
+    serializer_class = ThemeSerializer
+    authentication_classes = [JWTAuthentication]  # JWTAuthenticationを指定する
 
-class CreateTheme(APIView):
-    def post(self, request):
-        serializer = ThemeSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def perform_create(self, serializer):
+        user = self.request.user  # requestから直接userを取得する
+        serializer.save(user=user)
 
 
 class ThemeFormView(APIView):

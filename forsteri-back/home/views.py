@@ -1,22 +1,20 @@
+from .serializers import MyTokenObtainPairSerializer #追加
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from .serializers import SignupSerializer
+from rest_framework.permissions import AllowAny
 
-from .utils.auth import JWTAuthentication
-from .utils.auth import NormalAuthentication
+class SignupView(APIView):
+    permission_classes = [AllowAny]
 
+    def post(self, request):
+        serializer = SignupSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class Login(APIView):
-
-    authentication_classes = [NormalAuthentication,]
-
-    def post(self, request, *args, **kwargs):
-        return Response({"token": request.user})
-
-class Something(APIView):
-    authentication_classes = [JWTAuthentication, ]
-    # ログインしてるユーザーだけアクセスできるようにします。
-    permission_classes = [IsAuthenticated, ]
-
-    def get(self, request, *args, **kwargs):
-        return Response({"data": "中身です"})
+class ObtainTokenPairWithColorView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
