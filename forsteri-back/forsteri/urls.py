@@ -22,4 +22,3 @@ urlpatterns = [
     path('theme/', include('theme.urls')),
     path('api/', include('home.urls')),
 ]
-
