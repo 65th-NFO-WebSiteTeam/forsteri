@@ -11,6 +11,9 @@ from .models import Theme
 from .serializers import ThemeSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
+
 class CreateTheme(generics.CreateAPIView):
     queryset = Theme.objects.all()
     serializer_class = ThemeSerializer
@@ -69,3 +72,5 @@ class DetailTheme(APIView):
         except:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
+class VoteThemeView(APIView):
+    pass

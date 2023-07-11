@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Theme
+from home.models import UserProfile
 
 class ThemeSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
@@ -20,4 +21,3 @@ class ThemeSerializer(serializers.ModelSerializer):
             user = request.user
             validated_data['user'] = user
         return super().create(validated_data)
-    
