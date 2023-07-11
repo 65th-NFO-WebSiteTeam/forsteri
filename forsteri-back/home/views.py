@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import SignupSerializer
 from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
+from .models import UserProfile
 
 class SignupView(APIView):
     permission_classes = [AllowAny]
@@ -18,3 +20,10 @@ class SignupView(APIView):
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+class IsStaffView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        is_staff = request.user.is_staff
+        return Response({"is_staff": is_staff})
