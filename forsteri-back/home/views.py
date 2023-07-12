@@ -6,7 +6,6 @@ from rest_framework import status
 from .serializers import SignupSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework.permissions import IsAuthenticated
-from .models import UserProfile
 
 class SignupView(APIView):
     permission_classes = [AllowAny]

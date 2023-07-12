@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Theme
-from home.models import UserProfile
 
 class ThemeSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()

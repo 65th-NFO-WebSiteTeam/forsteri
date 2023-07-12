@@ -10,7 +10,6 @@ class Theme(models.Model):
     def __str__(self):
         return self.theme
     
-
 class Vote(models.Model):
     class Meta(object):
         verbose_name = "投票"

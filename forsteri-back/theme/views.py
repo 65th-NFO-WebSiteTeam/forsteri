@@ -47,6 +47,22 @@ class ListTheme(APIView):
                     'theme': d.theme,
                     'comment': d.comment,
                     'id': d.id,  # idフィールドを追加
+                }
+                for d in theme
+            ]
+            return Response(res_list)
+        except:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class StaffListTheme(APIView):
+    def get(self, request):
+        try:
+            theme = Theme.objects.all()
+            res_list = [
+                {
+                    'theme': d.theme,
+                    'comment': d.comment,
+                    'id': d.id,  # idフィールドを追加
                     'votes' : d.votes
                 }
                 for d in theme
@@ -67,12 +83,29 @@ class DetailTheme(APIView):
                 'id': theme.id,
                 'theme': theme.theme,
                 'comment': theme.comment,
+            }
+            return Response(res)
+        except:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class StaffDetailTheme(APIView):
+    def get(self, request, pk):
+        try:
+            try:
+                theme = Theme.objects.get(id=pk)
+            except:
+                error_msg = "存在しないテーマです"
+                return Response(error_msg, status=status.HTTP_404_NOT_FOUND)
+            res = {
+                'id': theme.id,
+                'theme': theme.theme,
+                'comment': theme.comment,
                 'votes': theme.votes
             }
             return Response(res)
         except:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
+
 class VoteThemeView(APIView):
     def post(self, request, pk):
         theme = get_object_or_404(Theme, pk=pk)
