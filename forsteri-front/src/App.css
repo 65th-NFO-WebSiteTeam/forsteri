@@ -1,0 +1,242 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Zen+Kaku+Gothic+New&display=swap');
+@font-face {
+	font-family: 'Optimistic Display';
+	src: url(./theme/assets/optimistic_display_md.ttf);
+}
+
+html {
+  font-size:62.5%;
+}
+body {
+  font-size:1.4rem;
+  font-family: 'Zen Kaku Gothic New',"Yu Gothic Medium","游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
+  font-weight: 500;
+}
+*, *::before, *::after {
+  box-sizing:border-box;
+}
+.clearfix::after {
+  content:'';
+  display:block;
+  clear:both;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
+
+header{
+    display:flex;
+    font-family: 'Optimistic Display';
+}
+ 
+header div{
+    display:flex;
+    font-size: 24px;
+ 
+    /*  ▼装飾など  */
+    margin-left: 10px;
+    padding: 48px;
+}
+ 
+header div:first-child{
+    margin-right:auto;
+ 
+    /*  ▼装飾など  */
+    margin-left: 0;
+}
+header div:first-child{
+    margin-right:auto;
+ 
+    /*  ▼装飾など  */
+    margin-left: 0;
+}
+
+.link-top {
+    color: #0066B1;
+}
+
+.links {
+    color: black;
+}
+
+.top-title {
+    font-family: Optimistic Display;
+    font-size: 48px;
+    font-weight: 500;
+    padding: 48px;
+    text-align: left;
+}
+
+.theme-title {
+    font-family: 'Zen Kaku Gothic New',sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    padding: 48px;
+    text-align: center;
+}
+
+.theme-content {
+    letter-spacing: 1.8px;
+    padding: 12px 48px;
+    text-align: left;
+    margin:36px; 
+    border: solid 1px #000;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.theme-content:hover {
+    background-color: rgb(255, 255, 138);
+}
+
+.detailwrapper {
+    margin: 0 48px;
+}
+
+
+.formwrapper {
+    margin: 0 48px;
+    text-align: left;
+}
+
+.detail-theme-wrapper {
+    width: fit-content;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    position: relative;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: #fff;
+}
+
+.detail-theme {
+    padding: 8px;
+    position: relative; /* 追加 */
+    z-index: 1; /* 追加 */
+}
+
+.detail-content {
+    padding: 14px 15px 15px 15px;
+    border: solid 1px #000;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+input,textarea {
+    font-family: inherit;
+    font-size: 0.875em;
+    width: 470px;
+    height: 50px;
+    padding: 15px;
+    margin: 24px 0;
+
+    
+    border: solid 1px black;
+    border-radius: 8px;
+    
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+  }
+
+.content {
+    width: 100%;
+    height: 100px;
+}
+
+
+.button-submit {
+    font-family: inherit;
+    background-color: #FFFFFF;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 13px 23px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+}
+
+.button-submit:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.button-submit:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.button-submit:disabled {
+  border-color: #DDDDDD;
+  color: #DDDDDD;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.button-submit:hover {
+    background-color: rgb(255, 255, 138);
+}
+
+.logout-wrapper {
+    margin-top: 96px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 水平方向の中央寄せ */
+    align-items: center; /* 垂直方向の中央寄せ */
+}
+
+.set-center {
+    text-align: center;
+}
+
+.signup-form {
+    text-align: center;
+  }
+
+.signup-wrapper {
+    margin-top: 96px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 水平方向の中央寄せ */
+    align-items: center; /* 垂直方向の中央寄せ */
+}
+
+.top-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  .login-wrapper {
+    text-align: center;
+  }
+
+.votes {
+    float: right;
+}
